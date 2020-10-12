@@ -7,10 +7,10 @@
 
 ## Autor
 
-dr Maciej Beręsewicz
-Adiunkt, Katedra Statystyki
-Uniwersytet Ekonomiczny w Poznaniu
-al. Niepodległości 10 | 61-875 Poznań
+dr Maciej Beręsewicz \
+Adiunkt, Katedra Statystyki \
+Uniwersytet Ekonomiczny w Poznaniu \
+al. Niepodległości 10 | 61-875 Poznań \
 www.ue.poznan.pl    
 
 ## Pakiety
