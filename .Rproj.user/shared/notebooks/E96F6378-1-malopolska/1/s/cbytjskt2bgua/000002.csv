@@ -1,0 +1,17 @@
+"0","download_log <- list()
+for (link in braki_linki) {
+  Sys.sleep(3)
+  cat(basename(link), ""\n"")
+  download_log[[ basename(link)]] <- download_file_safely(
+    url = link,  
+    destfile = paste0(""../data-raw/"", basename(link)))
+}
+"
+"1","COVID-19-ogniska-stan-na-27.06.2020-MPWIS.pdf"
+"1"," "
+"1","
+"
+"2","trying URL 'https://wsse.krakow.pl/page/wp-content/uploads/2020/06/COVID-19-ogniska-stan-na-27.06.2020-MPWIS.pdf'
+"
+"2","Error: Terminated by user
+"
