@@ -161,7 +161,7 @@ pliki_tab_all %>%
        caption = 
        "Wyjaśnienia: Czerwona przerywana linia oznacza zmianę metodyki raportowania po 01.09.2020 (nie było rozróżnienia na szkoły, wesela itp). Dla 01.09.2020 nie ma raportu w pdf.
        Skróty: ZOLe -- Zakłady Opiekuńczo-Lecznicze, DPSy -- Domy Pomocy Społecznej, Kwarantanna -- dotyczy stwierdzenia zachorowania w trakcie odbywania kwarantanny (po wcześniejszym kontakcie).
-       Źródło: Opracowanie własne na podstawie WSSE w Krakowie. Kody i dane dostępne są na. Wszelkie błędy są po mojej stronie (@mberesewicz)") -> p
+       Źródło: Opracowanie własne na podstawie WSSE w Krakowie. Kody i dane dostępne są na https://github.com/BERENZ/covid-roznosci. Wszelkie błędy są po mojej stronie (@mberesewicz)") -> p
   
 
 ggsave(plot = p, filename = "../figs/ogniska-malopolska-total.png", width = 12, height = 6)
@@ -177,6 +177,7 @@ pliki_tab_all %>%
   arrange(gdzie, data)  %>%
   group_by(gdzie) %>%
   mutate(n_lag = n - lag(n)) %>%
+  ungroup() %>%
   filter(data >= as.Date("2020-09-03")) %>%
   mutate(gdzie = case_when(gdzie == "inne_przypadki_zachorowan" ~ "inne przypadki",
                            gdzie == "osoby_z_kwarantanny_po_kontakcie_z_osoba_zakazona" ~ "kwarantanna: po kontakcie",
@@ -190,7 +191,7 @@ pliki_tab_all %>%
                            gdzie == "zachorowania_w_zol" ~ "ZOLe",
                            gdzie == "akademiki" ~ "Akademiki",
                            gdzie == "transport_publiczny" ~ "Transport publiczny")) %>%
-  mutate(gdzie = fct_reorder(gdzie, n_lag, .fun = max, .desc = T)) %>%
+  mutate(gdzie = fct_reorder(gdzie, n_lag, .fun = sum, .desc = T)) %>%
   filter(gdzie != "uczelnie") %>%
   ggplot(data = ., aes(x = data, y = n_lag, group = 1)) +
   geom_line() + 
@@ -202,6 +203,9 @@ pliki_tab_all %>%
        caption = 
        "Wyjaśnienia: Dane od 02.09.2020 ponieważ od 01.09.2020 zmieniono metodykę reportowania. Dla 01.09.2020 nie ma raportu w pdf.
        Skróty: ZOLe -- Zakłady Opiekuńczo-Lecznicze, DPSy -- Domy Pomocy Społecznej, Kwarantanna -- dotyczy stwierdzenia zachorowania w trakcie odbywania kwarantanny (po wcześniejszym kontakcie).
-       Źródło: Opracowanie własne na podstawie WSSE w Krakowie. Kody i dane dostępne są na. Wszelkie błędy są po mojej stronie (@mberesewicz)")
+       Źródło: Opracowanie własne na podstawie WSSE w Krakowie. Kody i dane dostępne są na https://github.com/BERENZ/covid-roznosci. Wszelkie błędy są po mojej stronie (@mberesewicz)") -> p
+  
+
+ggsave(plot = p, filename = "../figs/ogniska-malopolska-days.png", width = 12, height = 6)
 ```
 
