@@ -1,26 +1,26 @@
 Ogniska zakażeń w powiatach,,,,,,,,,,,,,
-Lp.,Powiat,Liczba potwierdzonych przypadków COVID-19 stan w dniu 7.08.2020 r. na godz. 8:00,,,,,,,,,,,
-"",,Ogółem,1)Ludność,"Zapadalność /Aktywneprzypadki(na 10 000)","Liczbazgonów","Liczbawyleczonych","Liczbaaktywnych3)przypadków","Osoby zkwarantannypo powrociez zagranicy","Osoby zkwarantanny pokontakcie zosobą zakażoną","Zachorowaniapoprzez kontaktw szpitalu lubprzychodni","Zachorowaniaw DPS","Zachorowaniaw ZOL","Inne przypadkizachorowań"
-1,bocheński,358,106 858,"33,50 / 16,75",22,150,179,3,80,12,229,0,34
-2,brzeski,78,93 201,"8,37",2,66,8,3,6,49,0,2,18
-3,chrzanowski,53,124 536,"4,26",0,36,17,1,25,1,0,0,26
-4,dąbrowski,30,59 174,"5,07",0,16,14,2,27,1,0,0,0
-5,gorlicki,66,108 886,"6,06",1,13,52,2,45,4,0,0,15
-6,krakowski,137,279 239,"4,91",2,86,49,4,49,19,0,0,65
-7,limanowski,276,131 764,"20,95 / 10,40",7,132,137,0,176,25,0,0,75
-8,miechowski,20,48 818,"4,10",0,13,7,0,11,0,0,0,9
-9,myślenicki,210,127 600,"16,46",0,162,48,0,116,19,0,0,75
-10,nowosądecki,788,216 796,"36,35 / 29,24",3,151,634,7,781,0,0,0,0
-11,nowotarski,134,191 782,"6,99",1,18,115,2,68,3,0,0,61
-12,olkuski,23,111 217,"2,07",0,13,10,3,0,5,0,0,15
-13,oświęcimski,255,153 486,"16,61",5,103,147,2,121,14,0,0,118
-14,proszowicki,19,43 222,"4,40",2,9,8,0,3,6,1,0,9
-15,suski,231,84 232,"27,42",1,192,38,0,141,2,0,0,88
-16,tarnowski,173,201 497,"8,59",3,98,72,6,90,2,47,0,28
-17,tatrzański,150,68 072,"22,04 / 20,71",0,9,141,2,109,1,0,0,38
-18,wadowicki,175,160 006,"10,94",3,44,128,0,129,5,0,0,41
-19,wielicki,172,129 136,"13,32",5,124,42,1,152,9,0,0,10
-20,m. Kraków,660,779 115,"8,47",19,314,327,27,159,103,0,0,371
-21,m. Nowy Sącz,235,83 794,"28,04 / 21,84",3,49,183,3,231,1,0,0,0
-22,m. Tarnów,43,108 470,"3,96",0,16,27,8,9,3,0,0,23
-"RazemMałopolska",4 286,3 410 901,"12,57",79,1 814,2 383,76,2 528,284,277,2,1 119,
+Lp.,Powiat,Liczba potwierdzonych przypadków COVID-19 stan w dniu 7.07.2020 r. na godz. 8:00,,,,,,,,,,,
+"",,Ogółem,"1)Ludność","Zapadalność /Aktywneprzypadki(na 10 000)","Liczbazgonów","Liczbawyleczonych","Liczbaaktywnych3)przypadków","Osoby zkwarantannypo powrociez zagranicy","Osoby zkwarantanny pokontakcie zosobą zakażoną","Zachorowaniapoprzez kontaktw szpitalu lubprzychodni","Zachorowaniaw DPS","Zachorowaniaw ZOL","Inne przypadkizachorowań"
+1,bocheński,152,106 858,"14,22",3,141,6,2,65,12,54,0,19
+2,brzeski,69,93 201,"7,40",2,64,1,2,5,48,0,2,12
+3,chrzanowski,37,124 536,"2,97",0,26,11,1,18,0,0,0,18
+4,dąbrowski,15,59 174,"2,53",0,11,4,2,12,1,0,0,0
+5,gorlicki,10,108 886,"0,92",0,7,3,1,6,1,0,0,2
+6,krakowski,87,279 239,"3,12",1,68,18,4,38,19,0,0,26
+7,limanowski,138,131 764,"10,47",3,104,31,0,78,25,0,0,35
+8,miechowski,12,48 818,"2,46",0,12,0,0,5,0,0,0,7
+9,myślenicki,159,127 600,"12,46",0,150,9,0,86,18,0,0,55
+10,nowosądecki,165,216 796,"7,61",0,31,134,7,158,0,0,0,0
+11,nowotarski,16,191 782,"0,83",0,10,6,2,5,1,0,0,8
+12,olkuski,15,111 217,"1,35",0,10,5,1,0,5,0,0,9
+13,oświęcimski,107,153 486,"6,97",4,74,29,2,48,13,0,0,44
+14,proszowicki,11,43 222,"2,55",2,6,3,0,0,5,0,0,6
+15,suski,194,84 232,"23,03",0,131,63,0,115,0,0,0,79
+16,tarnowski,114,201 497,"5,66",3,30,81,3,83,2,22,0,4
+17,tatrzański,8,68 072,"1,18",0,4,4,2,4,1,0,0,1
+18,wadowicki,36,160 006,"2,25",2,20,14,0,18,4,0,0,14
+19,wielicki,127,129 136,"9,83",5,116,5,1,117,9,0,0,0
+20,m. Kraków,350,779 115,"4,49",19,254,77,23,108,99,0,0,120
+21,m. Nowy Sącz,48,83 794,"5,73",0,28,20,3,44,1,0,0,0
+22,m. Tarnów,14,108 470,"1,29",0,13,1,8,3,2,0,0,1
+"RazemMałopolska",1 884,3 410 901,"5,52",44,1 310,525,64,1 016,266,76,2,460,

@@ -2,7 +2,8 @@
 
 ## Analiza ognisk 
 
-+ [Małopolska](notebooks/1-malopolska.Rmd) -- ponieważ mają raporty w PDF, które są tabelami
++ [Małopolska](notebooks/1-malopolska.Rmd) -- ponieważ mają raporty w PDF, które są tabelami. [Szczegóły są tutaj](https://wsse.krakow.pl/page/category/wsse/komunikaty/koronawirus-informacja-mpwis-o-sytuacji-epidemiologicznej-w-malopolsce/)
+
 
 
 ## Autor

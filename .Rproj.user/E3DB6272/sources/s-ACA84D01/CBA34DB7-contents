@@ -12,6 +12,8 @@ library(httr)
 #library(pdftools) ## ewentualnie tabulizer (problem z Javą)
 library(lubridate)
 library(janitor)
+library(scales)
+Sys.setlocale("LC_TIME", "pl_PL.UTF-8")
 ```
 
 Pobranie danych ze strony GIS https://wsse.krakow.pl/page/category/wsse/komunikaty/koronawirus-informacja-mpwis-o-sytuacji-epidemiologicznej-w-malopolsce/
@@ -82,15 +84,9 @@ for (link in braki_linki) {
 Zapisujemy w jeden duzy plik pdf
 
 ```{bash}
-pdfunite ../data-raw/*.pdf ../data-raw/_combined_.pdf
+pdfunite ../data-raw/malopolska/*.pdf ../data-raw/malopolska_razem.pdf
 ```
 
-Przenosimy pliki
-
-```{bash}
-mkdir ../data-raw/malopolska/
-mv ../data-raw/COVID-* ../data-raw/malopolska/
-```
 
 Odpalamy tabula (https://github.com/tabulapdf/tabula) na szybko, bez skryptu bo za duzo zabawy. Format pliów pdf się zmieniał 3 razy (rózne kolumny), a braki danych są spacjami (wcina kolumny)
 
@@ -207,5 +203,53 @@ pliki_tab_all %>%
   
 
 ggsave(plot = p, filename = "../figs/ogniska-malopolska-days.png", width = 12, height = 6)
+```
+
+
+Odsetek
+
+```{r}
+pliki_tab_all %>%
+  gather(gdzie, ile_osob, osoby_z_kwarantanny_po_powrocie_z_zagranicy:inne_przypadki_zachorowan, 
+         -data, -id, -nazwa, -ogolem, -liczba_zgonow, -liczba_wyleczonych) %>%
+  count(data, gdzie, wt = ile_osob) %>%
+  arrange(gdzie, data)  %>%
+  filter(data >= as.Date("2020-09-03")) %>%
+  mutate(gdzie = case_when(gdzie == "inne_przypadki_zachorowan" ~ "inne przypadki",
+                           gdzie == "osoby_z_kwarantanny_po_kontakcie_z_osoba_zakazona" ~ "kwarantanna: po kontakcie",
+                           gdzie == "zachorowania_poprzez_kontakt_w_szpitalu_lub_przychodni" ~  "szpital lub przychodnia",
+                           gdzie == "zaklady_pracy" ~ "zakład pracy",
+                           gdzie == "zachorowania_w_dps" ~ "DPSy",
+                           gdzie == "szkoly" ~ "Szkoły",
+                           gdzie == "wesela" ~ "Wesela",
+                           gdzie == "osoby_z_kwarantanny_po_powrocie_z_zagranicy" ~ "Kwarantanna: zagranica",
+                           gdzie == "puby_kawiarnie_restauracje_kluby" ~ "Puby, kawiarnie, restauracje, kluby",
+                           gdzie == "zachorowania_w_zol" ~ "ZOLe",
+                           gdzie == "akademiki" ~ "Akademiki",
+                           gdzie == "transport_publiczny" ~ "Transport publiczny")) %>%
+  filter(gdzie != "uczelnie") %>%
+  mutate(gdzie = fct_lump_prop(gdzie, w = n, prop = 0.05, other_level = "inne")) %>%
+  count(data, gdzie, wt = n,  name= "n") %>%
+  mutate(gdzie = fct_reorder(gdzie, n, .fun = sum, .desc = T)) %>%
+  add_count(data, wt = n, name = "total") %>%
+  mutate(p = n/total) %>%
+  ggplot(data = ., aes(x = data, y = p, fill = gdzie)) +
+  geom_col(color = "black") +
+  scale_fill_brewer(type = "qual", palette = "Set1") +
+  theme_bw() +
+  theme(legend.position = "bottom") + 
+  guides(fill = guide_legend(nrow = 1)) + 
+  scale_y_continuous(labels = percent) +
+  labs(x = "Data", y = "Odsetek zachorowań", fill = "Ognisko",
+       title = "Struktura dziennych zachorowań według ognisk w Małopolsce",
+       subtitle = "Opracowanie na podstawie raportów Wojewódzkiej Stacji Sanitarno-Epidemiologicznej w Krakowie",
+       caption = 
+       "Wyjaśnienia: Dane od 02.09.2020 ponieważ od 01.09.2020 zmieniono metodykę reportowania. Dla 01.09.2020 nie ma raportu w pdf.
+       Skróty: ZOLe -- Zakłady Opiekuńczo-Lecznicze, DPSy -- Domy Pomocy Społecznej, Kwarantanna -- dotyczy stwierdzenia zachorowania w trakcie odbywania kwarantanny (po wcześniejszym kontakcie).
+       Źródło: Opracowanie własne na podstawie WSSE w Krakowie. Kody i dane dostępne są na https://github.com/BERENZ/covid-roznosci. Wszelkie błędy są po mojej stronie (@mberesewicz)") -> p
+
+ggsave(plot = p, filename = "../figs/ogniska-malopolska-structure.png", width = 12, height = 6)
+
+  
 ```
 
