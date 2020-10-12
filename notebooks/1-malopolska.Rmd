@@ -152,7 +152,7 @@ pliki_tab_all %>%
   facet_wrap(~gdzie, scales = "free_y")  +
   theme_bw() +
   labs(x = "Data", y = "Liczba zachorowań", 
-       title = "Liczba zachorowań według ognisk w Małopolsce",
+       title = "Skumulowana liczba zachorowań w Małopolsce według ognisk",
        subtitle = "Opracowanie na podstawie raportów Wojewódzkiej Stacji Sanitarno-Epidemiologicznej w Krakowie",
        caption = 
        "Wyjaśnienia: Czerwona przerywana linia oznacza zmianę metodyki raportowania po 01.09.2020 (nie było rozróżnienia na szkoły, wesela itp). Dla 01.09.2020 nie ma raportu w pdf.
@@ -194,7 +194,7 @@ pliki_tab_all %>%
   facet_wrap(~gdzie, scales = "free_y")  +
   theme_bw() +
   labs(x = "Data", y = "Liczba zachorowań", 
-       title = "Dzienna liczba zachorowań według ognisk w Małopolsce",
+       title = "Dzienna liczba zachorowań w Małopolsce według ognisk",
        subtitle = "Opracowanie na podstawie raportów Wojewódzkiej Stacji Sanitarno-Epidemiologicznej w Krakowie",
        caption = 
        "Wyjaśnienia: Dane od 02.09.2020 ponieważ od 01.09.2020 zmieniono metodykę reportowania. Dla 01.09.2020 nie ma raportu w pdf.
@@ -237,10 +237,11 @@ pliki_tab_all %>%
   geom_col(color = "black") +
   scale_fill_brewer(type = "qual", palette = "Set1") +
   theme_bw() +
-  theme(legend.position = "bottom", legend.direction = "horizontal") + 
+  theme(legend.position = "bottom") + 
+  guides(fill = guide_legend(nrow = 1)) + 
   scale_y_continuous(labels = percent) +
   labs(x = "Data", y = "Odsetek zachorowań", fill = "Ognisko",
-       title = "Struktura dziennych zachorowań według ognisk w Małopolsce",
+       title = "Struktura dziennych zachorowań w Małopolsce według ognisk",
        subtitle = "Opracowanie na podstawie raportów Wojewódzkiej Stacji Sanitarno-Epidemiologicznej w Krakowie",
        caption = 
        "Wyjaśnienia: Dane od 02.09.2020 ponieważ od 01.09.2020 zmieniono metodykę reportowania. Dla 01.09.2020 nie ma raportu w pdf.
