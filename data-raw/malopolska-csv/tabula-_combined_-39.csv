@@ -1,26 +1,0 @@
-Ogniska zakażeń w powiatach,,,,,,,,,,,,,
-Lp.,Powiat,Liczba potwierdzonych przypadków COVID-19 stan w dniu 16.07.2020 r. na godz. 8:00,,,,,,,,,,,
-"",,Ogółem,"1)Ludność","Zapadalność /Aktywneprzypadki(na 10 000)","Liczbazgonów","Liczbawyleczonych","Liczbaaktywnych3)przypadków","Osoby zkwarantannypo powrociez zagranicy","Osoby zkwarantanny pokontakcie zosobą zakażoną","Zachorowaniapoprzez kontaktw szpitalu lubprzychodni","Zachorowaniaw DPS","Zachorowaniaw ZOL","Inne przypadkizachorowań"
-1,bocheński,165,106 858,"15,44",3,142,18,2,74,12,55,0,22
-2,brzeski,70,93 201,"7,51",2,64,2,2,5,48,0,2,13
-3,chrzanowski,38,124 536,"3,05",0,32,6,1,19,0,0,0,18
-4,dąbrowski,15,59 174,"2,53",0,11,4,2,12,1,0,0,0
-5,gorlicki,17,108 886,"1,56",0,7,10,1,12,1,0,0,3
-6,krakowski,95,279 239,"3,40",1,77,17,4,40,19,0,0,32
-7,limanowski,176,131 764,"13,36",5,106,65,0,102,25,0,0,49
-8,miechowski,15,48 818,"3,07",0,12,3,0,8,0,0,0,7
-9,myślenicki,159,127 600,"12,46",0,151,8,0,86,18,0,0,55
-10,nowosądecki,277,216 796,"12,78 / 11,21",0,34,243,7,270,0,0,0,0
-11,nowotarski,34,191 782,"1,77",0,12,22,2,19,1,0,0,12
-12,olkuski,15,111 217,"1,35",0,12,3,1,0,5,0,0,9
-13,oświęcimski,116,153 486,"7,56",4,81,31,2,50,13,0,0,51
-14,proszowicki,11,43 222,"2,55",2,7,2,0,0,5,0,0,6
-15,suski,207,84 232,"24,57",0,156,51,0,128,0,0,0,79
-16,tarnowski,116,201 497,"5,76",3,63,50,3,85,2,22,0,4
-17,tatrzański,49,68 072,"7,20",0,6,43,2,31,1,0,0,15
-18,wadowicki,62,160 006,"3,87",3,24,35,0,35,4,0,0,23
-19,wielicki,131,129 136,"10,14",5,118,7,1,121,9,0,0,0
-20,m. Kraków,374,779 115,"4,80",19,277,78,25,114,99,0,0,136
-21,m. Nowy Sącz,76,83 794,"9,07",0,28,48,3,72,1,0,0,0
-22,m. Tarnów,15,108 470,"1,38",0,14,1,8,3,2,0,0,2
-"RazemMałopolska",2 233,3 410 901,"6,55",47,1 434,747,66,1 286,266,77,2,536,

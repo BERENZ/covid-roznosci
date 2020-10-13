@@ -88,6 +88,11 @@ pdfunite ../data-raw/malopolska/*.pdf ../data-raw/malopolska_razem.pdf
 ```
 
 
+```{bash}
+## check area
+java -jar ../programs/tabula-1.0.4-jar-with-dependencies.jar -p all -a 53.0,50.0,495.0,790.0 -o ../data-raw/data_table.csv ../data-raw/malopolska_razem.pdf
+```
+
 Odpalamy tabula (https://github.com/tabulapdf/tabula) na szybko, bez skryptu bo za duzo zabawy. Format pliów pdf się zmieniał 3 razy (rózne kolumny), a braki danych są spacjami (wcina kolumny)
 
 W wyniku dostajemy dobre pliki CSV
@@ -149,8 +154,8 @@ pliki_tab_all %>%
   ggplot(data = ., aes(x = data, y = n, group = 1)) +
   geom_line() + 
   geom_vline(xintercept = as.Date("2020-08-31"), color = "red", linetype = "dashed") + 
-  #facet_wrap(~gdzie, scales = "free_y")  +
-  facet_wrap(~gdzie)  +
+  facet_wrap(~gdzie, scales = "free_y")  +
+  #facet_wrap(~gdzie)  +
   theme_bw() +
   labs(x = "Data", y = "Liczba potwierdzonych przypadków COVID-19 \n(uwaga na różne skale na wykresach)", 
        title = "Skumulowana liczba potwierdzonych przypadków COVID-19 w Małopolsce według ognisk",

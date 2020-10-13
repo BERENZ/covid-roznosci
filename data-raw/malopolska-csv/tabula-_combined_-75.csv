@@ -1,26 +1,0 @@
-Ogniska zakażeń w powiatach,,,,,,,,,,,,,
-Lp.,Powiat,Liczba potwierdzonych przypadków COVID-19 stan w dniu 28.08.2020 r. na godz. 8:00,,,,,,,,,,,
-"",,Ogółem,1)Ludność,"Zapadalność /Aktywneprzypadki(na 10 000)","Liczbazgonów","Liczbawyleczonych","Liczbaaktywnych3)przypadków","Osoby zkwarantannypo powrociez zagranicy","Osoby zkwarantanny pokontakcie zosobą zakażoną","Zachorowaniapoprzez kontaktw szpitalu lubprzychodni","Zachorowaniaw DPS","Zachorowaniaw ZOL","Inne przypadkizachorowań"
-1,bocheński,431,106 858,"40,33 / 15,72",29,227,168,3,121,13,240,0,54
-2,brzeski,143,93 201,"15,34",2,68,71,3,29,50,0,2,59
-3,chrzanowski,66,124 536,"5,30",0,50,16,1,25,1,0,0,39
-4,dąbrowski,43,59 174,"7,27",0,22,21,2,34,1,0,0,6
-5,gorlicki,122,108 886,"11,20",2,31,89,2,80,5,0,0,35
-6,krakowski,278,279 239,"9,96",3,113,162,4,85,24,0,0,165
-7,limanowski,452,131 764,"34,30 / 18,06",7,207,238,0,285,25,0,0,142
-8,miechowski,36,48 818,"7,37",0,17,19,0,18,0,0,0,18
-9,myślenicki,269,127 600,"21,08",0,213,56,0,144,20,0,0,105
-10,nowosądecki,1 177,216 796,"54,29 / 36,39",13,375,789,7,1 170,0,0,0,0
-11,nowotarski,505,191 782,"26,33 / 20,54",7,104,394,2,254,62,0,0,187
-12,olkuski,50,111 217,"4,50",0,23,27,3,4,8,0,0,35
-13,oświęcimski,354,153 486,"23,06",6,209,139,2,180,16,0,0,156
-14,proszowicki,31,43 222,"7,17",2,15,14,0,5,7,2,0,17
-15,suski,253,84 232,"30,04",2,214,37,0,150,3,0,0,100
-16,tarnowski,264,201 497,"13,10",7,124,133,6,155,3,56,0,44
-17,tatrzański,254,68 072,"37,31 / 18,95",2,123,129,2,164,13,0,0,75
-18,wadowicki,238,160 006,"14,87",6,136,96,0,164,7,0,0,67
-19,wielicki,258,129 136,"19,98",5,137,115,1,210,9,0,0,38
-20,m. Kraków,1 384,779 115,"17,76 / 10,68",24,528,832,28,320,119,0,0,917
-21,m. Nowy Sącz,460,83 794,"54,90 / 41,41",9,104,347,3,456,1,0,0,0
-22,m. Tarnów,60,108 470,"5,53",0,22,38,8,20,3,0,0,29
-"RazemMałopolska",7 128,3 410 901,"20,90 / 11,52",126,3 062,3 930,77,4 073,390,298,2,2 288,
