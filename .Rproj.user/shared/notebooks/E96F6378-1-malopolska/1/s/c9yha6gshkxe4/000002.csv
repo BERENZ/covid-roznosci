@@ -1,1 +1,2 @@
-"0","java -jar ../programs/tabula-1.0.4-jar-with-dependencies.jar -p all -a 53.0,50.0,495.0,790.0 -o ../data-raw/data_table.csv ../data-raw/malopolska_razem.pdf"
+"0","## check area
+java -jar ../programs/tabula-1.0.4-jar-with-dependencies.jar -p all -a 37.36,37.886,385.705,811.4 -o ../data-raw/data_table.csv ../data-raw/malopolska_razem.pdf"

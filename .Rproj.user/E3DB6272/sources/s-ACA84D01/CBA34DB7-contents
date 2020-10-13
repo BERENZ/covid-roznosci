@@ -81,7 +81,7 @@ for (link in braki_linki) {
 ## mamy wszystkie pdfy
 ```
 
-Zapisujemy w jeden duzy plik pdf
+Zapisujemy w jeden duzy plik pdf -- to mozna wywalić bo po co jeden plik
 
 ```{bash}
 pdfunite ../data-raw/malopolska/*.pdf ../data-raw/malopolska_razem.pdf
@@ -90,7 +90,7 @@ pdfunite ../data-raw/malopolska/*.pdf ../data-raw/malopolska_razem.pdf
 
 ```{bash}
 ## check area
-java -jar ../programs/tabula-1.0.4-jar-with-dependencies.jar -p all -a 53.0,50.0,495.0,790.0 -o ../data-raw/data_table.csv ../data-raw/malopolska_razem.pdf
+java -jar ../programs/tabula-1.0.4-jar-with-dependencies.jar -p all -a 37.36,37.886,385.705,811.4 -o ../data-raw/data_table.csv ../data-raw/malopolska_razem.pdf
 ```
 
 Odpalamy tabula (https://github.com/tabulapdf/tabula) na szybko, bez skryptu bo za duzo zabawy. Format pliów pdf się zmieniał 3 razy (rózne kolumny), a braki danych są spacjami (wcina kolumny)
