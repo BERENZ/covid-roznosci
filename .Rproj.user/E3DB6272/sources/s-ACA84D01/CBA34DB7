@@ -7,14 +7,14 @@
     "folds" : "",
     "hash" : "0",
     "id" : "CBA34DB7",
-    "lastKnownWriteTime" : 1602545257,
-    "last_content_update" : 1602545257268,
+    "lastKnownWriteTime" : 1602575161,
+    "last_content_update" : 1602575161139,
     "path" : "~/git/misc/covid/notebooks/1-malopolska.Rmd",
     "project_path" : "notebooks/1-malopolska.Rmd",
     "properties" : {
         "chunk_output_type" : "inline",
-        "cursorPosition" : "143,66",
-        "scrollLine" : "124",
+        "cursorPosition" : "162,0",
+        "scrollLine" : "153",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
