@@ -159,7 +159,8 @@ szkoly_df %>%
   scale_color_brewer(type = "qual", name = "Grupa", palette = "Set1") + 
   theme_bw() + 
   labs(x = "Dzień", y = "Odsetek",
-       title = "Udział uczniów, nauczycieli i tych grup razem we wszystkich osobach objętych kwarantanną i z potwierdzonym SARS-CoV-2",
+       title = 
+       "Udział uczniów, nauczycieli i tych grup razem we wszystkich osobach objętych kwarantanną i z potwierdzonym SARS-CoV-2\nw Województwie Pomorskim (stan na 14.10.2020)",
        subtitle = "Opracowanie na podstawie dziennych raportów Wojewódzkiej Stacji Sanitarno-Epidemiologicznej w Gdansku",
        caption = 
        "Źródło: Opracowanie własne na podstawie WSSE w Gdańsku Kody i dane dostępne są na https://github.com/BERENZ/covid-roznosci. Wszelkie błędy są po mojej stronie (@mberesewicz)")  -> p
