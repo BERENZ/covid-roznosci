@@ -1,0 +1,94 @@
+diff --git a/data-raw/gdansk/gda-13.txt b/data-raw/gdansk/gda-14.txt
+index 445afa6..d8f323f 100644
+--- a/data-raw/gdansk/gda-13.txt
++++ b/data-raw/gdansk/gda-14.txt
+@@ -40,7 +40,7 @@ Ognisko związane z zakładem pracy – 3 przypadki zakażenia, powiat kartuski,
+ Ognisko związane z wycieczką – 16 przypadków zakażenia, powiat chojnicki.
+ Ognisko związane ze Szpitalem – 5 przypadków zakażenia, w tym 4 pracowników medycznych, powiat lęborski.
+ Ognisko związane z zakładem pracy – 6 przypadków zakażenia, w tym 3 pracowników, powiat kartuski, powiat starogardzki, miasto Gdańsk.
+-Ognisko związane z zakładem pracy – 16 przypadków zakażenia, powiat starogardzki, miasto Gdańsk.
++Ognisko związane z zakładem pracy – 17 przypadków zakażenia, powiat starogardzki, miasto Gdańsk.
+ Ognisko związane ze Szpitalem – 6 przypadków zakażenia, w tym 3 pracowników medycznych miasto Gdańsk.
+ Ognisko związane z 2 zakładami pracy – 15 przypadków zakażenia w tym 11 pracowników, powiat malborski.
+ Ognisko związane ze Szkołą – 10 przypadków zakażenia w tym 5 nauczycieli i 3 uczniów, powiat wejherowski, powiat kartuski.
+@@ -49,13 +49,13 @@ Ognisko związane z zakładem pracy – 9 przypadków zakażenia, w tym 3 pracow
+ Ognisko związane ze Szkołą – 5 przypadków zakażenia, w tym 1 nauczyciel i 2 uczniów, powiat tczewski.
+ Ognisko związane z Zespołem Kształcenia – 22 przypadki zakażenia, w tym 3 pracowników i 11 uczniów, powiat kartuski.
+ Ognisko związane ze Szkołą – 5 przypadków zakażenia, w tym 1 nauczyciel, 1 pracownik Szkoły i 3 uczniów, powiat kartuski.
+-Ognisko związane ze Szpitalem – 76 przypadków zakażenia w tym 59 pracowników medycznych, powiat kościerski, miasto Gdańsk, powiat tczewski, powiat kartuski.
++Ognisko związane ze Szpitalem – 78 przypadków zakażenia w tym 61 pracowników medycznych, powiat kościerski, miasto Gdańsk, powiat tczewski, powiat kartuski.
+ Ognisko związane z Domem Pomocy Społecznej – 21 przypadków zakażenia w tym 3 osoby z personelu i 17 pensjonariuszy, powiat nowodworski.
+ Ognisko związane z Przedszkolem – 7 przypadków zakażenia, w tym 3 nauczycieli i 2 uczniów, powiat gdański.
+ Ognisko związane z zakładem pracy – 3 przypadki zakażenia, miasto Gdynia.
+ Ognisko związane z Przedszkolem – 4 przypadki zakażenia, miasto Gdynia.
+ Ognisko związane z Domem Pomocy Społecznej – 98 przypadki zakażenia, w tym 10 pracowników i 88 pensjonariuszy, powiat wejherowski, miasto Gdynia, powiat kartuski.
+-Ognisko związane ze Szpitalem – 59 przypadków zakażenia w tym 34 pracowników medycznych, miasto Gdańsk, miasto Sopot.
++Ognisko związane ze Szpitalem – 65 przypadków zakażenia w tym 37 pracowników medycznych, miasto Gdańsk, miasto Sopot.
+ Ognisko związane ze Specjalnym Ośrodkiem Szkolno – Wychowawczym – 7 przypadków zakażenia, w tym 6 nauczycieli i 1 uczeń, miasto Gdynia.
+ Ognisko związane z podmiotem leczniczym – 3 przypadki zakażenia, powiat starogardzki.
+ Ognisko związane z Przedszkolem – 4 przypadki zakażenia, w tym 3 pracowników, powiat wejherowski.
+@@ -79,13 +79,13 @@ Ognisko związane ze szkołą – 2 przypadki zakażenia, powiat kwidzyński.
+ Ognisko związane z zakładem pracy – 4 przypadki zakażenia, w tym 3 pracowników, powiat tczewski.
+ Ognisko związane z domem pomocy – 20 przypadków zakażenia, w tym 4 osoby z personelu, powiat starogardzki.
+ Ognisko związane z zakładem pracy – 6 przypadków zakażenia, powiat wejherowski.
+-Ognisko związane z zakładem pracy – 10 przypadków zakażenia, powiat starogardzki.
++Ognisko związane z zakładem pracy – 13 przypadków zakażenia, powiat starogardzki.
+ Ognisko związane ze Szkołą – 12 przypadków zakażenia, w tym 8 nauczycieli, powiat słupski.
+ Ognisko związane ze Szpitalem – 7 przypadków zakażenia, w tym 6 pracowników medycznych, miasto Słupsk.
+ Ognisko związane ze Szpitalem – 6 przypadków zakażenia, w tym 6 pracowników medycznych, powiat pucki, powiat wejherowski.
+ Ognisko związane z zakładem pracy – 10 przypadków zakażenia, miasto Gdynia.
+ Ognisko związane z domem opieki – 4 przypadki zakażenia, miasto Gdynia.
+-Ognisko związane z zakładem pracy – 11 przypadków zakażenia, w tym 8 pracowników, miasto Gdańsk.
++Ognisko związane z zakładem pracy – 15 przypadków zakażenia, w tym 9 pracowników, miasto Gdańsk.
+ Ognisko związane z zakładem pracy – 4 przypadki zakażenia, w tym 2 pracowników, miasto Gdańsk.
+ Ognisko związane ze szkołą – 6 przypadków zakażenia, w tym 3 nauczycieli, 1 uczeń, powiat pucki.
+ Ognisko związane ze Szpitalem – 14 przypadków zakażenia, w tym 7 pracowników medycznych, powiat malborski, powiat sztumski.
+@@ -111,7 +111,7 @@ Ognisko związane z zakładem pracy - 2 przypadki zakażenia, powiat wejherowski
+ Ognisko związane z ZOL - 2 przypadki zakażenia, powiat tczewski.
+ Ognisko związane z zakładem pracy - 3 przypadki zakażenia, powiat tczewski.
+ Ognisko związane z zakładem pracy - 3 przypadki zakażenia, powiat tczewski.
+-Ognisko związane z drużyną sportową - 5 przypadków zakażenia, w tym 2 zawodników, miasto Gdańsk.
++Ognisko związane z drużyną sportową – 6 przypadków zakażenia, w tym 3 zawodników, miasto Gdańsk.
+ Ognisko związane z ZOL - 3 przypadki zakażenia, w tym 2 pracowników, powiat starogardzki.
+ Ognisko związane ze Szkołą - 7 przypadków zakażenia, w tym 5 nauczycieli, powiat słupski.
+ Ognisko związane z zakładem pracy - 3 przypadki zakażenia, miasto Gdynia.
+@@ -123,7 +123,7 @@ Ognisko związane z Domem Opieki Społecznej - 2 przypadki zakażenia, w tym 2 p
+ Ognisko związane ze Szpitalem - 3 przypadki zakażenia, miasto Gdańsk.
+ Ognisko związane ze Szkołą - 3 przypadki zakażenia, miasto Gdańsk.
+ Ognisko związane ze Szpitalem - 2 przypadki zakażenia, powiat
+-Ognisko związane z Domem Opieki Społecznej - 15 przypadków zakażenia, w tym 2 pracowników i 7 pensjonariuszy, powiat wejherowski.
++Ognisko związane z Domem Opieki Społecznej - 16 przypadków zakażenia, w tym 3 pracowników i 7 pensjonariuszy, powiat wejherowski.
+ Ognisko związane z zakładem pracy - 5 przypadków zakażenia, miasto Gdańsk, powiat kartuski.
+ Ognisko związane z zakładem pracy - 3 przypadki zakażenia, powiat kwidzyński.
+ Ognisko związane z Przedszkolem - 3 przypadki zakażenia, powiat kwidzyński.
+@@ -132,15 +132,21 @@ Ognisko związane ze Szkołą - 3 przypadki zakażenia, w tym 1 nauczyciel, powi
+ Ognisko związane z zakładem pracy - 4 przypadki zakażenia, powiat nowodworski.
+ Ognisko związane z zakładem pracy - 2 przypadki zakażenia, powiat starogardzki.
+ Ognisko związane z zakładem pracy - 5 przypadków zakażenia, powiat pucki.
+-Ognisko związane ze Szkołą - 6 przypadków zakażenia, miasto Gdańsk, miasto Sopot.
++Ognisko związane ze Szkołą - 9 przypadków zakażenia, miasto Gdańsk, miasto Sopot.
+ Ognisko związane z Przedszkolem - 4 przypadki zakażenia, miasto Gdańsk.
+-Ognisko związane z Ośrodkiem Wychowawczym - 4 przypadki zakażenia, w tym 1 pracownik, powiat kwidzyński.
++Ognisko związane z Ośrodkiem Wychowawczym - 9 przypadków zakażenia, powiat kwidzyński.
+ Ognisko związane ze Stacją Dializ - 3 przypadki zakażenia, powiat kwidzyński.
+ Ognisko związane z domem opieki - 2 przypadki zakażenia, powiat kościerski.
+-Ognisko związane z zakładem pracy - 5 przypadków zakażenia, powiat kartuski.
+-Ognisko związane ze Szkołą - 4 przypadki zakażenia, w tym 1 nauczyciel i 2 uczniów, powiat tczewski.
+-Ognisko związane z zakładem pracy – 2 przypadki zakażenia, powiat tczewski, miasto Gdańsk.
++Ognisko związane z zakładem pracy – 9 przypadków zakażenia, w tym 8 pracowników, powiat kartuski.
++Ognisko związane ze Szkołą - 5 przypadków zakażenia, w tym 1 nauczyciel i 2 uczniów, powiat tczewski.
++Ognisko związane z zakładem pracy – 3 przypadki zakażenia, powiat tczewski, miasto Gdańsk.
+ Ognisko związane z zakładem pracy – 2 przypadki zakażenia, miasto Gdańsk.
+-Ognisko związane z Domem Pomocy Społecznej – 7 przypadków zakażenia, powiat pucki.
++Ognisko związane z Domem Pomocy Społecznej – 28 przypadków zakażenia, w tym 21 pensjonariuszy i 7 osób z personelu, powiat pucki.
+ Ognisko związane z zakładem pracy – 2 przypadki zakażenia, miasto Gdynia, powiat wejherowski.
+-Ognisko związane ze Szkołą – 9 przypadków zakażenia, powiat gdański, powiat tczewski.
+\ No newline at end of file
++Ognisko związane ze Szkołą – 11 przypadków zakażenia, powiat gdański, powiat tczewski.
++Ognisko związane z Domem Samopomocy – 8 przypadków zakażenia, miasto Sopot.
++Ognisko związane z Domem Samopomocy – 4 przypadki zakażenia, powiat tczewski.
++Ognisko związane ze Szpitalem – 3 przypadki zakażenia, w tym 3 pracowników medycznych, powiat starogardzki.
++Ognisko związane ze Szpitalem – 4 przypadki zakażenia, w tym 4 pracowników, powiat bytowski.
++Ognisko związane ze Szpitalem – 3 przypadki zakażenia, miasto Gdynia.
++Ognisko związane z zakładem pracy – 2 przypadki zakażenia, powiat malborski.
+\ No newline at end of file

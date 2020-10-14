@@ -154,8 +154,8 @@ pliki_tab_all %>%
   ggplot(data = ., aes(x = data, y = n, group = 1)) +
   geom_line() + 
   geom_vline(xintercept = as.Date("2020-08-31"), color = "red", linetype = "dashed") + 
-  facet_wrap(~gdzie, scales = "free_y")  +
-  #facet_wrap(~gdzie)  +
+  #facet_wrap(~gdzie, scales = "free_y")  +
+  facet_wrap(~gdzie)  +
   theme_bw() +
   labs(x = "Data", y = "Liczba potwierdzonych przypadków COVID-19 \n(uwaga na różne skale na wykresach)", 
        title = "Skumulowana liczba potwierdzonych przypadków COVID-19 w Małopolsce według ognisk",

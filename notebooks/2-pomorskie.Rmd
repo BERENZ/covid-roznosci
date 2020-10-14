@@ -21,6 +21,151 @@ Pomorski Państwowy Wojewódzki Inspektor Sanitarny informuje o sytuacji w ognis
 
 
 ```{r}
+library(tidyverse)
+library(rvest)
+library(httr)
+library(stringi)
+library(lubridate)
+library(readxl)
+library(pdftools)
+library(scales)
+Sys.setlocale("LC_TIME", "pl_PL.UTF-8")
+```
+
+
+```{r}
+aktualnosci <- paste0("http://www.wsse.gda.pl/aktualnosci-i-komunikaty/aktualnosci?start=", seq(0,1100,10))
+```
+
+# Ogółem
+
+```{r}
+url_13 <- "http://www.wsse.gda.pl/aktualnosci-i-komunikaty/aktualnosci/1661-raport-z-dnia-13-pazdziernika-2020-roku-na-temat-sars-cov-2-w-wojewodztwie-pomorskim"
+
+```
+
+
+
+
+# Szkoły -- raporty
+
+```{r}
+get_links_school <- function(url) {
+  url %>%  GET() %>%  read_html() %>%  html_nodes("div.page-header.with-date") -> szkola_links 
+  szkola_links %>% html_text() %>% str_detect("szkół") %>% which() -> szkola_which
+  szkola_links[szkola_which] %>% html_nodes('a') %>% html_attr("href") %>% paste0("http://www.wsse.gda.pl",.) -> szkola_links
+  return(szkola_links)
+}
+
+szkola_linki <- lapply(aktualnosci, get_links_school)
+szkola_linki <- unlist(szkola_linki)
+szkola_linki <- szkola_linki[str_detect(szkola_linki, "informacje-dotyczace-szkol")]
+
+``` 
+
+```{r}
+get_links_school_content <- function(url) {
+  url %>% read_html() -> szkola_doc
+
+data.frame(data = szkola_doc %>% html_node("div.additional-infos")  %>% html_text(), 
+           wnioski =  szkola_doc %>% html_nodes("div.itemFullText > p") %>% html_text() %>% str_c(collapse = " ") %>%
+             stri_extract_first_regex("\\d{1,5} wniosków") %>% str_extract("\\d+"),
+           nauczyciele_covid = szkola_doc %>% html_nodes("div.itemFullText > p") %>% html_text() %>% str_c(collapse = " ") %>%
+             stri_extract_first_regex("(wynosi|u) \\d{1,5}") %>% str_extract("\\d+"),
+           uczniowie_covid = szkola_doc %>% html_nodes("div.itemFullText > p") %>% html_text() %>% str_c(collapse = " ") %>%
+             stri_extract_last_regex("(wynosi|u) \\d{1,5}") %>% str_extract("\\d+"),
+           uczniowie_kwar = szkola_doc %>% html_nodes("div.itemFullText > p") %>% html_text() %>% str_c(collapse = " ") %>%
+             stri_extract_last_regex("\\d{1,5} uczniów") %>% str_extract("\\d+"),
+           nauczyciele_kwar = szkola_doc %>% html_nodes("div.itemFullText > p") %>% html_text() %>% str_c(collapse = " ") %>%
+             stri_extract_last_regex("\\d{1,5} nauczycieli") %>% str_extract("\\d+"),
+           stringsAsFactors = FALSE,
+           url = url )  -> df
+return(df)
+}
+
+szkoly_df <- lapply(szkola_linki, get_links_school_content) %>%
+  bind_rows() %>%
+  mutate_at(vars(wnioski:nauczyciele_kwar), as.numeric) %>%
+  select(-url) %>%
+  mutate(data = str_extract(data, "\\d{1,2} (wrzesień|październik) 2020"),
+         data = str_replace(data, " październik ", "-10-"),
+         data = str_replace(data, " wrzesień ", "-09-"),
+         data = dmy(data))  %>%
+  mutate(nauczyciele_covid2=ifelse(data <= as.Date("2020-09-10"), uczniowie_covid, nauczyciele_covid),
+         uczniowie_covid2=ifelse(data <= as.Date("2020-09-10"), nauczyciele_covid, uczniowie_covid)) %>%
+  select(-uczniowie_covid, -nauczyciele_covid) %>%
+  rename(nauczyciele_covid=nauczyciele_covid2,
+         uczniowie_covid=uczniowie_covid2)
+```
+
+
+Liczba osób na kwarantannie
+
+```{r}
+kwar_pliki <- paste0("http://www.wsse.gda.pl/media/k2/attachments/covid-19_mapa_", format(szkoly_df$data, "%d_%m_%Y"), ".pdf")
+
+get_stats_pomorkie <- function(pdf_file) {
+  
+  pdf_plik <- pdf_text(pdf_file) %>%
+  str_replace_all("\\n", "X") %>% 
+  str_replace_all("\\s+", " X ") 
+  
+  kwarantanna <- pdf_plik[2] %>%
+  str_extract("X \\d{1,5} X \\d{1,5}X") %>%
+  str_extract("\\d{1,5}X$") %>%
+  str_extract("\\d{1,5}") %>%
+  as.numeric()
+  
+  przypadki <- pdf_plik[1] %>%
+  stri_extract_first_regex("X \\d{1,5} X") %>%
+  str_extract("\\d{1,5}") %>%
+  as.numeric()
+  
+  return(c(kwarantanna, przypadki))
+}
+
+liczba_kwar <- lapply(kwar_pliki, get_stats_pomorkie)
+liczba_kwar <- do.call("rbind", liczba_kwar)
+
+
+```
+
+Łączymy przypadki oraz dane o uczniach i nauczycielach
+
+```{r}
+szkoly_df %>%
+  select(data, nauczyciele_covid, uczniowie_covid, uczniowie_kwar, nauczyciele_kwar) %>%
+  mutate(przypadki_kwar = liczba_kwar[,1],
+         przypadki_sum = liczba_kwar[,2]) %>%
+  arrange(data) %>%
+  mutate(p_uczniowie = uczniowie_covid/przypadki_sum,
+         p_nauczyciele = nauczyciele_covid/przypadki_sum,
+         p_razem = (nauczyciele_covid+uczniowie_covid)/przypadki_sum,
+         k_uczniowie = uczniowie_kwar/przypadki_kwar,
+         k_nauczyciele = nauczyciele_kwar/przypadki_kwar,
+         k_razem = (nauczyciele_kwar+uczniowie_kwar)/przypadki_kwar) %>%
+  select(data, p_uczniowie:k_razem) %>%
+  gather(stat, val, -data) %>%
+  separate(stat, c("typ", "kto"), "_") %>%
+  mutate(typ = ifelse(typ == "k", "Objęci kwarantanną", "Potwierdzone przypadki SARS-CoV-2"),
+         kto = factor(kto, 
+                      c("uczniowie", "nauczyciele", "razem"),
+                      c("uczniowie", "nauczyciele", "razem"),
+                      ordered = T)) %>%
+  ggplot(data = ., aes(x = data, y = val, color = kto)) +
+  geom_line() +
+  facet_wrap(~typ) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) + 
+  scale_color_brewer(type = "qual", name = "Grupa", palette = "Set1") + 
+  theme_bw() + 
+  labs(x = "Dzień", y = "Odsetek",
+       title = "Udział uczniów, nauczycieli i tych grup razem we wszystkich osobach objętych kwarantanną i z potwierdzonym SARS-CoV-2",
+       subtitle = "Opracowanie na podstawie dziennych raportów Wojewódzkiej Stacji Sanitarno-Epidemiologicznej w Gdansku",
+       caption = 
+       "Źródło: Opracowanie własne na podstawie WSSE w Gdańsku Kody i dane dostępne są na https://github.com/BERENZ/covid-roznosci. Wszelkie błędy są po mojej stronie (@mberesewicz)")  -> p
+  
+
+ggsave(plot = p, filename = "../figs/szkoly-pomorskie.png", width = 12, height = 6)
 
 ```
 
