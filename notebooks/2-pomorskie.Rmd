@@ -170,3 +170,22 @@ ggsave(plot = p, filename = "../figs/szkoly-pomorskie.png", width = 12, height =
 
 ```
 
+
+Zapis danych z wykresu
+
+```{r}
+szkoly_df %>%
+  select(data, nauczyciele_covid, uczniowie_covid, uczniowie_kwar, nauczyciele_kwar) %>%
+  mutate(przypadki_kwar = liczba_kwar[,1],
+         przypadki_sum = liczba_kwar[,2]) %>%
+  arrange(data) %>%
+  mutate(p_uczniowie = uczniowie_covid/przypadki_sum,
+         p_nauczyciele = nauczyciele_covid/przypadki_sum,
+         p_razem = (nauczyciele_covid+uczniowie_covid)/przypadki_sum,
+         k_uczniowie = uczniowie_kwar/przypadki_kwar,
+         k_nauczyciele = nauczyciele_kwar/przypadki_kwar,
+         k_razem = (nauczyciele_kwar+uczniowie_kwar)/przypadki_kwar)  -> dane_wykres
+
+write_csv(x = dane_wykres, path = "../data/szkoly-pomorskie.csv")
+```
+
