@@ -37,14 +37,6 @@ Sys.setlocale("LC_TIME", "pl_PL.UTF-8")
 aktualnosci <- paste0("http://www.wsse.gda.pl/aktualnosci-i-komunikaty/aktualnosci?start=", seq(0,1100,10))
 ```
 
-# Ogółem
-
-```{r}
-url_13 <- "http://www.wsse.gda.pl/aktualnosci-i-komunikaty/aktualnosci/1661-raport-z-dnia-13-pazdziernika-2020-roku-na-temat-sars-cov-2-w-wojewodztwie-pomorskim"
-
-```
-
-
 
 
 # Szkoły -- raporty
@@ -188,4 +180,132 @@ szkoly_df %>%
 
 write_csv(x = dane_wykres, path = "../data/szkoly-pomorskie.csv")
 ```
+
+# Ogniska
+
+```{r}
+aktualnosci <- paste0("http://www.wsse.gda.pl/aktualnosci-i-komunikaty/aktualnosci?start=", seq(0,1100,10))
+```
+
+Raporty
+
+```{r}
+get_links_reports <- function(url) {
+  url %>%  GET() %>%  read_html() %>%  html_nodes("div.page-header.with-date") -> reports_links 
+  reports_links %>% html_text() %>% str_detect("Raport z dnia") %>% which() -> reports_which
+  reports_links[reports_which] %>% html_nodes('a') %>% html_attr("href") %>% paste0("http://www.wsse.gda.pl",.) -> reports_links
+  return(reports_links)
+}
+
+reports_linki <- lapply(aktualnosci, get_links_reports)
+reports_linki <- unlist(reports_linki)
+reports_linki <- reports_linki[str_detect(reports_linki, "raport-z-dnia")]
+```
+
+```{r}
+
+get_reports_details <- function(url) {
+  print(url)
+  
+  url %>%
+  GET() %>%
+  content() %>%
+  html_nodes("div.itemFullText > ol > li") %>%
+  html_text() %>%
+  .[stri_detect(., fixed = "Ognisko")] -> wsse_gdansk
+  
+  ## drugi sposób zapisu
+  if (length(wsse_gdansk) == 0) {
+     url %>%
+      GET() %>%
+      content() %>%
+      html_nodes("div.itemFullText > p") %>%
+      html_text() %>%
+      .[stri_detect(., regex = "\\d{1,2}.+Ognisko")] %>%
+      stri_split(., regex = "\\.\\d{1,2}") %>%
+      unlist() %>%
+      stri_replace_first_regex("^.+Ognisko", "Ognisko") -> wsse_gdansk
+  }
+  
+  ## trzeci sposób zapisu
+  if (length(wsse_gdansk) == 0) {
+    url %>%
+      GET() %>%
+      content() %>%
+      html_nodes("div.itemFullText > ul > li") %>%
+      html_text() %>%
+      .[stri_detect(., regex = "Ognisko|ognisko")] -> wsse_gdansk
+    
+  }
+  ## czwarty sposób zapisu
+ if (length(wsse_gdansk) == 0) {
+    url %>%
+      GET() %>%
+      content() %>%
+      html_nodes("div.itemFullText > p") %>%
+      html_text() %>%
+      .[stri_detect(., regex = "Ognisko|ognisko")] %>%
+      stri_replace_first_regex("^.+ognisko", "Ognisko")-> wsse_gdansk
+    
+  }
+  
+  df <- data.frame(
+    data = url %>% GET() %>% content() %>% html_node("div.additional-infos")  %>% html_text(),
+    ognisko_typ = stri_split_regex(wsse_gdansk, ".?(–|-).?", n = 2, simplify = T)[, 1] %>% stri_trans_tolower()  %>% stri_replace_first_regex("ognisko związane (z|ze) ", ""),
+    liczba = stri_extract_first_regex(wsse_gdansk,
+      "\\d{1,3}.{1,3}(przypadki|przypadek|przypadków|przepadki|osoby|osób)"
+    ) %>% stri_extract(regex = "\\d+") %>% as.numeric(),
+    stringsAsFactors = F
+  )
+
+return(df)
+}
+
+gdansk_df <- lapply(reports_linki[1:144], get_reports_details)
+
+gdansk_df_all <- bind_rows(gdansk_df) %>% 
+  mutate(data = str_extract(data, "\\d{1,2} (maj|czerwiec|lipiec|sierpień|wrzesień|październik) 2020"),
+         data = str_replace(data, " październik ", "-10-"),
+         data = str_replace(data, " wrzesień ", "-09-"),
+         data = str_replace(data, " sierpień ", "-08-"),
+         data = str_replace(data, " lipiec ", "-07-"),
+         data = str_replace(data, " czerwiec ", "-06-"),
+         data = str_replace(data, " maj ", "-05-"),
+         data = dmy(data))
+```
+
+W ilu przypadkach mamy informacje o ognisku
+
+
+```{r}
+kwar_pliki <- paste0("http://www.wsse.gda.pl/media/k2/attachments/covid-19_mapa_", format(unique(gdansk_df_all$data), "%d_%m_%Y"), ".pdf")
+
+kwar_pliki[which(kwar_pliki=="http://www.wsse.gda.pl/media/k2/attachments/covid-19_mapa_04_10_2020.pdf")] <- 
+  "http://www.wsse.gda.pl/media/k2/attachments/covid-19_mapa_04_10_2020.pdf.pdf"
+
+kwar_pliki[which(kwar_pliki=="http://www.wsse.gda.pl/media/k2/attachments/covid-19_mapa_17_08_2020.pdf")] <- 
+  "http://www.wsse.gda.pl/media/k2/attachments/Covid_17_08.pdf"
+
+kwar_pliki[which(kwar_pliki=="http://www.wsse.gda.pl/media/k2/attachments/covid-19_mapa_13_06_2020.pdf")] <- 
+  "http://www.wsse.gda.pl/media/k2/attachments/covid-19_mapa_13_06_2020_2.pdf"
+
+
+statystyki_pomorskie <- lapply(kwar_pliki[-1], get_stats_pomorkie)
+statystyki_pomorskie_df <- do.call("rbind", statystyki_pomorskie)
+statystyki_pomorskie_df <- data.frame(statystyki_pomorskie_df)
+```
+
+
+
+```{r}
+gdansk_df_all %>%
+  count(data, wt = liczba) %>%
+  filter(data != "2020-10-15") %>% 
+  mutate(total = rev(statystyki_pomorskie_df[, 2])) %>%
+  ggplot(data = ., aes(x = data, y = n/total)) + geom_line() +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) + 
+  labs(x = "Data", y = "Odsetek", 
+       title = "Odsetek przypadków COVID-19 z potwierdzonego ogniska według WSSE Gdańsk (Pomorskie)")
+```
+
 
