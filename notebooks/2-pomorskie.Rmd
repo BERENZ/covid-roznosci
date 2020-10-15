@@ -317,6 +317,21 @@ gdansk_df_all %>%
 
 ggsave(plot = p, filename = "../figs/ogniska-pomorskie.png", width = 12, height = 6)
 
+gdansk_df_all %>%
+  count(data, wt = liczba) %>%
+  filter(data != "2020-10-15") %>% 
+  #mutate(total = rev(statystyki_pomorskie_df[, 2])) %>%
+  ggplot(data = ., aes(x = data, y = n)) + geom_line() +
+  #scale_y_continuous(labels = percent_format(accuracy = 1)) + 
+  theme_bw() + 
+  labs(x = "Data", y = "Odsetek", 
+       title = "Liczba przypadków COVID-19 z potwierdzonym ogniskiem według WSSE Gdańsk (Pomorskie)",
+       subtitle = "Na podstawie raportów ze stron WSSE Gdańsk",
+       caption = 
+       "Źródło: Opracowanie własne na podstawie WSSE w Gdańsku Kody i dane dostępne są na https://github.com/BERENZ/covid-roznosci. Wszelkie błędy są po mojej stronie (@mberesewicz)") -> p
+
+ggsave(plot = p, filename = "../figs/ogniska-pomorskie-dzienne.png", width = 12, height = 6)
+
 ```
 
 
