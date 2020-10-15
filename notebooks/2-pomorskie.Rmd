@@ -274,6 +274,10 @@ gdansk_df_all <- bind_rows(gdansk_df) %>%
          data = dmy(data))
 ```
 
+```{r}
+write_csv(x = dane_wykres, path = "../data/ogniska-pomorskie.csv")
+```
+
 W ilu przypadkach mamy informacje o ognisku
 
 
