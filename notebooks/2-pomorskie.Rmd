@@ -275,7 +275,7 @@ gdansk_df_all <- bind_rows(gdansk_df) %>%
 ```
 
 ```{r}
-write_csv(x = dane_wykres, path = "../data/ogniska-pomorskie.csv")
+write_csv(x = gdansk_df_all, path = "../data/ogniska-pomorskie.csv")
 ```
 
 W ilu przypadkach mamy informacje o ognisku
@@ -308,8 +308,15 @@ gdansk_df_all %>%
   mutate(total = rev(statystyki_pomorskie_df[, 2])) %>%
   ggplot(data = ., aes(x = data, y = n/total)) + geom_line() +
   scale_y_continuous(labels = percent_format(accuracy = 1)) + 
+  theme_bw() + 
   labs(x = "Data", y = "Odsetek", 
-       title = "Odsetek przypadków COVID-19 z potwierdzonego ogniska według WSSE Gdańsk (Pomorskie)")
+       title = "Odsetek przypadków COVID-19 z potwierdzonym ogniskiem według WSSE Gdańsk (Pomorskie)",
+       subtitle = "Na podstawie raportów ze stron WSSE Gdańsk",
+       caption = 
+       "Źródło: Opracowanie własne na podstawie WSSE w Gdańsku Kody i dane dostępne są na https://github.com/BERENZ/covid-roznosci. Wszelkie błędy są po mojej stronie (@mberesewicz)") -> p
+
+ggsave(plot = p, filename = "../figs/ogniska-pomorskie.png", width = 12, height = 6)
+
 ```
 
 
