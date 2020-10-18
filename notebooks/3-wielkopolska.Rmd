@@ -4,3 +4,25 @@ output: html_notebook
 ---
 
 https://www.poznan.uw.gov.pl/komunikaty-prasowe
+
+```{r}
+library(rvest)
+library(tidyverse)
+```
+
+
+```{r}
+m <- read_html("https://www.poznan.uw.gov.pl/komunikaty-prasowe/835-nowych-przypadkow-zakazen") %>%
+  html_table()
+```
+
+```{r}
+m[[1]] %>%
+  select(lp=1, plec=2,wiek=3,powiat=4,typ=5) %>%
+  mutate(wiek = str_replace(wiek, "l\\. ", ""),
+         wiek = str_replace(wiek, "dziecko", "1")) %>%
+  count(wiek = as.numeric(wiek)) %>%
+  ggplot(data = ., aes(x = wiek, y = n)) +
+  geom_col()
+```
+

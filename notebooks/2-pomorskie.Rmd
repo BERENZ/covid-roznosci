@@ -207,6 +207,7 @@ reports_linki <- reports_linki[str_detect(reports_linki, "raport-z-dnia")]
 get_reports_details <- function(url) {
   print(url)
   
+  flag <- 1
   url %>%
   GET() %>%
   content() %>%
@@ -216,6 +217,7 @@ get_reports_details <- function(url) {
   
   ## drugi sposób zapisu
   if (length(wsse_gdansk) == 0) {
+    flag <- 2
      url %>%
       GET() %>%
       content() %>%
@@ -229,6 +231,7 @@ get_reports_details <- function(url) {
   
   ## trzeci sposób zapisu
   if (length(wsse_gdansk) == 0) {
+    flag <- 3
     url %>%
       GET() %>%
       content() %>%
@@ -239,6 +242,7 @@ get_reports_details <- function(url) {
   }
   ## czwarty sposób zapisu
  if (length(wsse_gdansk) == 0) {
+   flag <- 4
     url %>%
       GET() %>%
       content() %>%
@@ -250,6 +254,7 @@ get_reports_details <- function(url) {
   }
   
   df <- data.frame(
+    zmiana = flag,
     data = url %>% GET() %>% content() %>% html_node("div.additional-infos")  %>% html_text(),
     ognisko_typ = stri_split_regex(wsse_gdansk, ".?(–|-).?", n = 2, simplify = T)[, 1] %>% stri_trans_tolower()  %>% stri_replace_first_regex("ognisko związane (z|ze) ", ""),
     liczba = stri_extract_first_regex(wsse_gdansk,
@@ -272,6 +277,13 @@ gdansk_df_all <- bind_rows(gdansk_df) %>%
          data = str_replace(data, " czerwiec ", "-06-"),
          data = str_replace(data, " maj ", "-05-"),
          data = dmy(data))
+```
+
+```{r}
+gdansk_df_all %>%
+  count(data, zmiana, wt = liczba) %>%
+  ggplot(data = ., aes(x = data, y = n, fill = factor(zmiana))) + 
+  geom_col()
 ```
 
 ```{r}
